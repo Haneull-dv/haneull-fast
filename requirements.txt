@@ -1,0 +1,31 @@
+# ✅ FastAPI 필수 패키지
+fastapi                # FastAPI 프레임워크
+uvicorn                # ASGI 서버 (FastAPI 실행을 위해 필요)
+
+# ✅ 데이터베이스 관련 패키지
+sqlalchemy             # ORM (데이터베이스 연결 및 쿼리)
+
+# ✅ 비동기 DB 연동 시 필요 (옵션)
+asyncpg                # 비동기 PostgreSQL 드라이버 (SQLAlchemy Async 사용 시 필수)
+
+# ✅ 타임존 및 날짜/시간 처리
+pytz                   # 타임존 변환 (datetime 라이브러리와 함께 사용)
+
+# ✅ 환경 변수 관리
+python-dotenv          # `.env` 파일에서 환경 변수를 로드
+
+# ✅ 데이터 검증 및 직렬화
+pydantic[email]
+email-validator
+
+# ✅ CORS 설정
+fastapi[all]           # 모든 추가 기능 포함 (CORS, GraphQL, WebSockets 등)
+
+# ✅ JWT 기반 인증 (보안 필요할 경우)
+pyjwt                  # JWT(JSON Web Token) 인증 지원
+passlib[bcrypt]        # 비밀번호 해싱 (보안 강화)
+bcrypt                 # 비밀번호 해싱 라이브러리
+
+# ✅ 기타 유틸리티
+httpx                  # FastAPI 테스트용 HTTP 클라이언트
+pytest
