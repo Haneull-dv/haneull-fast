@@ -23,16 +23,15 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-# CORS 미들웨어 설정 추가
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # 프론트엔드 서버 주소
+    allow_origins=["*"],  # 모든 오리진 허용 (개발 환경용, 프로덕션에서는 구체적인 오리진 지정)
     allow_credentials=True,
     allow_methods=["*"],  # 모든 HTTP 메서드 허용
-    allow_headers=["*"],  # 모든 헤더 허용
+    allow_headers=["*"],  # 모든 HTTP 헤더 허용
 )
 
-app.include_router(app_router)
+app.include_router(app_router, prefix="/api")
 
 
 current_time: Callable[[], str] = lambda: datetime.now(datetime.timezone('Asia/Seoul')).strftime("%Y-%m-%d %H:%M:%S")

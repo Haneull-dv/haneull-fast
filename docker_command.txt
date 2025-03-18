@@ -5,7 +5,7 @@ docker images
 docker start backend
 docker start database
 docker-compose
-docker exec -it database  psql -U myuser -d mydb -c "SELECT * FROM member;"
+docker exec -it database  psql -U myuser -d mydb -c "SELECT * FROM members;"
 docker exec -it backend bash
 docker compose logs --tail=500 -f backend
 docker exec -it backend env | Select-String "DB_"
