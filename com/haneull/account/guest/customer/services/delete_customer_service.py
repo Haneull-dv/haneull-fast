@@ -1,12 +1,12 @@
-from sqlalchemy.orm import Session
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.exc import SQLAlchemyError
 from com.haneull.account.guest.customer.models.customer_schema import CustomerSchema
-from com.haneull.auth.service.delete_service import DeleteService
 from com.haneull.utils.creational.abstract.abstract_service import AbstractService
+from typing import Dict, Any
 
 
 class DeleteCustomer(AbstractService):
-    def handle(self, db: AsyncSession, **kwargs):
+    async def handle(self, db: AsyncSession, **kwargs) -> Dict[str, Any]:
         """
         AbstractService의 추상 메서드 구현
         """

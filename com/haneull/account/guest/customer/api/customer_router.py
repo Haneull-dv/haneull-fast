@@ -14,8 +14,9 @@ router = APIRouter()
 controller = CustomerController()
 
 @router.post(path="/create")
-async def create_customer():
-    return controller.create_customer()
+async def create_customer(create_customer: CustomerSchema, db: AsyncSession = Depends(get_db)):
+    print("👮👮 customer router create_customer 진입함", create_customer)
+    return await controller.create_customer(db=db, create_customer=create_customer)
 
 @router.get(path="/detail")
 async def get_customer_detail(customer_id: str, db: AsyncSession = Depends(get_db)):
@@ -23,7 +24,7 @@ async def get_customer_detail(customer_id: str, db: AsyncSession = Depends(get_d
 
 @router.get("/list", response_model=List[Dict[str, Any]])
 async def get_customer_list(db: AsyncSession = Depends(get_db)):
-    print("🎉🎉 get_customers 로 진입함")
+    print("🎉🎉 customer router get_customer_list 진입함")
     return await controller.get_customer_list(db=db)
 
 @router.put(path="/update")

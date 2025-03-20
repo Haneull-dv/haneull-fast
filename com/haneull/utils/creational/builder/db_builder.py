@@ -40,6 +40,27 @@ class DatabaseBuilder:
         )
         return self.pool  # ✅ `AsyncDatabase` 대신 `self.pool` 반환 (싱글톤 패턴 유지)
 
+# asyncpg Connection에 기능 추가
+class EnhancedConnection:
+    def __init__(self, connection):
+        self._connection = connection
+        
+    async def fetch(self, query, *args, **kwargs):
+        print(f"💡 실행 쿼리: {query}")
+        return await self._connection.fetch(query, *args, **kwargs)
+        
+    async def execute(self, query, *args, **kwargs):
+        print(f"💡 실행 쿼리: {query}")
+        return await self._connection.execute(query, *args, **kwargs)
+        
+    # 다른 Connection 메서드들을 필요에 따라 추가할 수 있음
+    
+    async def __aenter__(self):
+        return self
+        
+    async def __aexit__(self, exc_type, exc_val, exc_tb):
+        pass
+
 # ✅ 글로벌 DB 풀을 생성 (싱글톤 적용)
 db_pool = None
 
@@ -62,4 +83,5 @@ async def get_db():
         db_pool = await builder.build()
 
     async with db_pool.acquire() as connection:  # ✅ `async with` 사용하여 자동 해제
-        yield connection
+        enhanced_conn = EnhancedConnection(connection)
+        yield enhanced_conn
