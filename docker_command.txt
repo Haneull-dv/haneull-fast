@@ -163,3 +163,4 @@ docker-compose down backend
 docker-compose build backend
 docker-compose up -d
 docker exec -it database psql -U myuser -d mydb -c "SELECT * FROM members;"
+//
