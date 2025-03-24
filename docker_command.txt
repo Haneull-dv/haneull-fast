@@ -6,8 +6,6 @@ docker start backend
 docker start database
 docker-compose
 
-
-
 docker compose logs --tail=500 -f backend
 docker exec -it backend env | Select-String "DB_"
 docker-compose down --volumes
@@ -18,4 +16,4 @@ docker-compose down backend
 docker-compose build backend
 docker-compose up -d
 docker exec -it database psql -U myuser -d mydb -c "SELECT * FROM members;"
-//
+///
