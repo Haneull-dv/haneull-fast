@@ -7,7 +7,7 @@ docker start database
 docker exec -it postgres_container  psql -U postgres -d my_database
 docker exec -it backend bash
 docker compose logs fastapi
-docker compose logs --tail 100 fastapi
+docker compose logs --tail 100 fastapi_container
 docker-compose build --no-cache
 docker-compose up -d --force-recreate
 SELECT * FROM members;
